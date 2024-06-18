@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+  contenerizacionweb:
+    container_name: contenerizacionweb
+    image: contenerizacionweb:v1
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    networks:
+      - networkcontenedor
+
+networks:
+  networkcontenedor:
