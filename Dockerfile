@@ -1,5 +1,5 @@
 FROM node:20
-WORKDIR /home/user/Documentos/IUDigital/Tech Web/1. Contenerizacion/
+WORKDIR /home/user/Documentos/IUDigital/Tech Web/Contenerizacion
 
 COPY package*.json ./
 RUN npm install

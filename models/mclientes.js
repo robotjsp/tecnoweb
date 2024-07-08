@@ -4,10 +4,9 @@ const { Schema, model } = require("mongoose");
 const ClienteSchema = Schema({
     dni: {
         type: Number,
-        primaryKey: true,
-        autoIncrement: true
+        primaryKey: true
       },
-    name: {
+    nombre: {
         type: String,
         required: [true, '🛈 Recuerda: Este campo es obligatorio']
     },
@@ -26,7 +25,7 @@ const ClienteSchema = Schema({
     },
     mail: {
         type: String,
-      required: true
+        required: true
     }
 });
 //Procedemos a exportar un modelo de tipo mongoose, se crea Alias 'directorSchema' y se llama desde el controller

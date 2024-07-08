@@ -9,28 +9,22 @@ const Createcliente = async (req = request, res = response) => {
     console.log(req.body)
     
     //New method
-    const { name, email} = req.body;
+    const { dni, nombre, mail} = req.body;
     // Creamos una condicion
     try {
-        const clienteJSON_Query = await clienteJSON.findOne({serial})
-        // Validamos los datos
+        const name = (req.body.name) ? req.body.name.toString() : '';
+        const clienteJSON_Query = await clienteJSON.findOne({dni})
         if (clienteJSON_Query) {
-            return res.status(400).json({ msg: 'File ccliente| ❌ Error: Nombre de director repetido. 🛈 Esta acción no modificará la DB' })
+            return res.status(400).json({ msg: 'File cclientes| ❎ Error: Nombre de director repetido. 🛈 Esta acción no modificará la DB' })
         }
-
-        // Creamos el objeto con los datos de la cliente
-        const data = {serial,titulo,sinopsis,urlfilm,portada,dateposting,genero,director,productora,tipo};
-
-        // Creamos el nuevo documento en la base de datos
-        const JSON = new clienteJSON(data);
-        console.log(JSON);
-        await JSON.save();
-
-        // Crear respuesta positiva #201
-        res.status(201).json(JSON);
+        const data = {dni, nombre, mail}
+        const JSON = new clienteJSON(data)
+        console.log(JSON)
+        await JSON.save()
+        //Crear respuesta positiva #201
+        res.status(201).json(JSON)
     } catch (e) {
-        console.log(error);
-        return res.status(500).json({ msg: 'File ccliente| ❌ Error durante la solicitud para crear:', error });
+        return res.status(500).json({ msg: 'File cclientes| ❎ Error durante la solicitud para crear: Logs', e })
     }
 };
 // Read by ID ------------------------------------------------------------
@@ -69,9 +63,7 @@ const Updatecliente = async (req = request, res = response) => {
         const data = req.body
         const id = req.params.id
         const clienteJSONQuerybyId = await clienteJSON.findById(id)
-        //if(!typeDeviceQuerybyId){
-        //    return console.log('Este dispositivo no existe')
-        //}
+
         data.updatedate = new Date()
         console.log(data)
         const clienteJSON_Query = await clienteJSON.findByIdAndUpdate(id, data, { new: true })
@@ -98,6 +90,7 @@ const Deletecliente = async (req = request, res = response) => {
         return res.status(500).json({ msg: 'File ccliente| ❌ Error durante la solicitud para eliminar:', e })
     }
 }
+
 module.exports = {
     Createcliente,
     GetclientebyID,

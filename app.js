@@ -14,18 +14,20 @@ app.use(cors());
 //Importar las rutas
 const RutaClientes = require('./routes/rclientes');
 const RutaProyectos = require('./routes/rproyectos');
-//const RutaProductoras = require('./routes/rproductora');
-//const RutaTipos = require('./routes/rtipo');
-//const RutaMedias = require('./routes/rmedia');
+const Rutaetapas = require('./routes/retapas');
+const RutasUniversidades = require('./routes/runiversidades');
+const RutaCategorias = require('./routes/mcategorias');
+
 // todo: Middlewares fotos
 
 
 // todo: Middlewares cors
 app.use('/api/clientes', RutaClientes);
 app.use('/api/proyectos', RutaProyectos);
-//app.use('/api/productoras', RutaProductoras);
-//app.use('/api/tipos', RutaTipos);
-//app.use('/api/medias', RutaMedias);
+app.use('/api/etapas', Rutaetapas);
+app.use('/api/universidades', RutasUniversidades);
+app.use('/api/categorias', RutaCategorias);
+
 
 app.all('*', (req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -36,5 +38,6 @@ app.all('*', (req, res, next) => {
 app.get('/', (req,res) => {
 return res.json({});
 });
+
 //We need export to use it in external enviroment
 module.exports=app;

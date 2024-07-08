@@ -36,9 +36,9 @@ const proyectoSchema = Schema({
     type: Schema.Types.ObjectId,
     ref:'mclientes'
   },
-  tipoproyectos: {
+  Categorias: {
     type: Schema.Types.ObjectId,
-    ref:'Tipoproyectos'
+    ref:'Categorias'
   },
   universidad: {
     type: Schema.Types.ObjectId,
